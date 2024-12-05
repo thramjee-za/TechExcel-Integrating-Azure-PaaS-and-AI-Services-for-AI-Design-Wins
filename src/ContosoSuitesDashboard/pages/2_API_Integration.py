@@ -8,6 +8,7 @@ def get_hotels():
     """Return a list of hotels from the API."""
     api_endpoint = st.secrets["api"]["endpoint"]
     response = requests.get(f"{api_endpoint}/Hotels", timeout=10)
+    print({api_endpoint });
     return response
 
 @st.cache_data
@@ -41,6 +42,7 @@ def main():
 
     # Display the list of hotels as a drop-down list
     hotels_json = get_hotels().json()
+    print(hotels_json)
     # Reshape hotels to an object with hotelID and hotelName
     hotels = [{"id": hotel["hotelID"], "name": hotel["hotelName"]} for hotel in hotels_json]
     
